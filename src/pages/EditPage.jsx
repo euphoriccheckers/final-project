@@ -1,13 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import supabase from "../client/client";
 
-const CreatePage = () => {
+const EditPage = () => {
+    const { id } = useParams();
+    const navigate = useNavigate();
+
     const [post, setPost] = useState({
         title: "",
         content: "",
         image: ""
     });
+
+    const getPost = async () => {
+        try {
+            const { data, error } = await supabase
+                .from("posts")
+                .select("*")
+                .eq("id", id)
+                .single();
+
+            if (error) throw error;
+            setPost(data);
+        } catch (error) {
+            console.error("Error fetching post:", error);
+        }
+    };
+
+    useEffect(() => {
+        getPost();
+    }, []);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -17,17 +40,21 @@ const CreatePage = () => {
         }));
     };
 
-    const createNewPost = async (event) => {
+    const updatePost = async (event) => {
         event.preventDefault();
 
         try {
-            const { error } = await supabase.from("posts").insert([post]);
+            const { error } = await supabase
+                .from("posts")
+                .update(post)
+                .eq("id", id);
+
             if (error) throw error;
 
-            window.alert("Post Created!");
-            window.location = "/";
+            window.alert("Post Updated!");
+            navigate(`/post/${id}`);
         } catch (error) {
-            console.error("Unexpected error:", error);
+            console.error("Error updating post:", error);
         }
     };
 
@@ -35,9 +62,9 @@ const CreatePage = () => {
         <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-950 text-white">
             <Navbar />
             <div className="max-w-3xl mx-auto px-4 py-8">
-                <h2 className="text-3xl text-red-400 font-bold mb-6">Create a New Post</h2>
+                <h2 className="text-3xl text-red-400 font-bold mb-6">Edit Post</h2>
                 <form
-                    onSubmit={createNewPost}
+                    onSubmit={updatePost}
                     className="bg-gray-900 p-6 rounded-xl border border-red-800 shadow-md space-y-6"
                 >
                     <div>
@@ -78,7 +105,7 @@ const CreatePage = () => {
                         type="submit"
                         className="bg-red-700 hover:bg-red-600 px-6 py-2 rounded text-white font-semibold transition cursor-pointer"
                     >
-                        Submit
+                        Update
                     </button>
                 </form>
             </div>
@@ -86,4 +113,4 @@ const CreatePage = () => {
     );
 };
 
-export default CreatePage;
+export default EditPage;

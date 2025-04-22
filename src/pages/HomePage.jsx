@@ -9,11 +9,7 @@ const HomePage = () => {
     const getAllPosts = async () => {
         try {
             const { data, error } = await supabase.from("posts").select();
-
-            if(error) {
-                throw error;
-            }
-
+            if (error) throw error;
             setPosts(data);
         } catch (error) {
             console.error("There was an error getting all posts from DB: ", error);
@@ -25,13 +21,13 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div>
+        <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-950 text-white">
             <Navbar />
-            <h1>This is the Home page.</h1>
-            <div>
-                {posts.map((post) => {
-                    return(
-                        <Post 
+            <div className="max-w-4xl mx-auto px-4 py-8">
+                <h1 className="text-3xl font-bold mb-6 text-red-400">Latest Offerings</h1>
+                <div className="space-y-4">
+                    {posts.map((post) => (
+                        <Post
                             key={post.id}
                             id={post.id}
                             title={post.title}
@@ -39,12 +35,12 @@ const HomePage = () => {
                             image={post.image}
                             created={post.created_at}
                             upvotes={post.upvotes}
-                        ></Post>
-                    )
-                })}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default HomePage;
