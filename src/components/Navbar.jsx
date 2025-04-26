@@ -9,7 +9,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-black bg-gradient-to-r from-black via-purple-900 to-red-900 px-6 py-4 shadow-lg">
+        <nav className="bg-black bg-gradient-to-r from-black via-purple-800 to-red-800 px-6 py-4 shadow-lg">
             <div className="max-w-6xl mx-auto flex justify-between items-center text-white font-semibold">
                 <Link
                     to="/"
@@ -57,7 +57,7 @@ const Navbar = () => {
             </div>
 
             {menuOpen && (
-                <div className="md:hidden mt-2 space-y-2 flex flex-col items-start bg-black bg-gradient-to-r from-black via-purple-900 to-red-900 rounded-lg p-4 shadow-md">
+                <div className="md:hidden mt-2 space-y-2 flex flex-col items-start bg-black bg-gradient-to-r from-black via-purple-800 to-red-800 rounded-lg p-4 shadow-md">
                     <Link
                         to="/"
                         className="text-white hover:text-red-300 transition duration-200 cursor-pointer w-full"

@@ -55,7 +55,7 @@ const EditPage = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-black bg-gradient-to-br from-black via-gray-900 to-red-950 text-white relative">
+        <div className="min-h-screen bg-black bg-gradient-to-br from-black via-gray-800 to-red-800 text-white relative shadow-inner">
             <Navbar />
             <div className="max-w-3xl mx-auto px-4 py-8">
                 {fetching ? (
