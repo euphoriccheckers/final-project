@@ -33,7 +33,7 @@ const CreatePage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-950 text-white relative">
+        <div className="min-h-screen bg-black bg-gradient-to-br from-black via-gray-900 to-red-950 text-white relative">
             <Navbar />
             <div className="max-w-3xl mx-auto px-4 py-8">
                 <h2 className="text-2xl sm:text-3xl text-red-400 font-bold mb-6">Create a New Post</h2>
