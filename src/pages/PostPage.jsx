@@ -87,48 +87,52 @@ const PostPage = () => {
                     </div>
                 ) : (
                     <>
-                        <h1 className="text-3xl text-red-400 font-bold mb-4">Post Details</h1>
+                        <h1 className="text-2xl sm:text-3xl text-red-400 font-bold mb-4">
+                            Post Details
+                        </h1>
                         <div className="bg-gray-900 p-6 rounded-xl border border-red-800 shadow-md space-y-4 relative">
                             <div className="absolute top-4 right-4 flex gap-2">
                                 <Link to={`/edit/${id}`}>
-                                    <button className="bg-red-700 hover:bg-red-600 px-3 py-1 rounded text-sm text-white font-medium transition cursor-pointer">
+                                    <button className="bg-red-700 hover:bg-red-600 px-3 py-1 rounded text-xs sm:text-sm text-white font-medium transition cursor-pointer">
                                         Edit
                                     </button>
                                 </Link>
                                 <button
                                     onClick={() => setConfirmDelete(true)}
-                                    className="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded text-sm text-white font-medium transition cursor-pointer"
+                                    className="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded text-xs sm:text-sm text-white font-medium transition cursor-pointer"
                                 >
                                     Delete
                                 </button>
                             </div>
 
-                            <h2 className="text-xl text-red-300 font-semibold">{post.title}</h2>
+                            <h2 className="text-lg sm:text-xl text-red-300 font-semibold">{post.title}</h2>
                             <p className="text-gray-200">{post.content}</p>
 
                             {post.image && post.image.length > 0 && (
                                 <img
                                     src={post.image}
                                     alt="Post"
-                                    className="rounded-lg max-h-96 object-cover border border-gray-700"
+                                    className="w-full rounded-lg max-h-96 object-cover border border-gray-700"
                                 />
                             )}
 
-                            <div className="text-sm text-gray-400 border-t border-gray-700 pt-4 mt-4 flex justify-between">
+                            <div className="text-xs sm:text-sm text-gray-400 border-t border-gray-700 pt-4 mt-4 flex justify-between">
                                 <span>Upvotes: {post.upvotes}</span>
                                 <span>Created: {new Date(post.created_at).toLocaleString()}</span>
                             </div>
 
                             <button
                                 onClick={upvotePost}
-                                className="mt-6 bg-red-700 hover:bg-red-600 px-6 py-2 rounded text-white font-semibold transition cursor-pointer"
+                                className="mt-6 bg-red-700 hover:bg-red-600 px-6 py-3 rounded text-white font-semibold transition cursor-pointer"
                             >
                                 Upvote
                             </button>
                         </div>
 
                         <div className="mt-12">
-                            <h3 className="text-2xl text-red-400 font-bold mb-4">Comments</h3>
+                            <h3 className="text-2xl text-red-400 font-bold mb-4">
+                                Comments
+                            </h3>
                             {comments.length > 0 ? (
                                 comments.map((comment) => (
                                     <div key={comment.id} className="bg-gray-800 p-4 rounded mb-4">
@@ -139,7 +143,9 @@ const PostPage = () => {
                                     </div>
                                 ))
                             ) : (
-                                <p className="text-center text-gray-400 py-12">No comments yet. Be the first!</p>
+                                <p className="text-center text-gray-400 py-12">
+                                    No comments yet. Be the first!
+                                </p>
                             )}
 
                             <form onSubmit={addComment} className="mt-8 space-y-4">
@@ -153,7 +159,7 @@ const PostPage = () => {
                                 <button
                                     type="submit"
                                     disabled={submittingComment}
-                                    className={`w-full bg-red-700 hover:bg-red-600 px-6 py-2 rounded text-white font-semibold transition cursor-pointer ${submittingComment ? "opacity-50 cursor-not-allowed" : ""
+                                    className={`w-full bg-red-700 hover:bg-red-600 px-6 py-3 rounded text-white font-semibold transition cursor-pointer ${submittingComment ? "opacity-50 cursor-not-allowed" : ""
                                         }`}
                                 >
                                     {submittingComment ? "Posting..." : "Post Comment"}
@@ -166,7 +172,7 @@ const PostPage = () => {
 
             {confirmDelete && (
                 <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
-                    <div className="bg-gray-900 p-8 rounded-xl border border-red-800 text-center max-w-sm w-full">
+                    <div className="bg-gray-900 p-6 md:p-8 rounded-xl border border-red-800 text-center max-w-sm w-full">
                         <h2 className="text-2xl text-red-400 font-bold mb-4">Confirm Delete</h2>
                         <p className="text-gray-300 mb-6">Are you sure you want to delete this post?</p>
                         <div className="flex gap-4">
