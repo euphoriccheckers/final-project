@@ -2,7 +2,7 @@
 
 Submitted by: **Kasra Bahrehmand**
 
-This web app: Allows users to create, browse, and interact with posts, featuring upvoting, comments, and full CRUD functionality." Deployed via Netlify at: https://hadeshub.netlify.app/
+This web app: Allows users to create, browse, and interact with posts, featuring upvoting, comments, and full CRUD functionality." Deployed via Netlify at: https://hadeshub.netlify.app/.
 
 Time spent: **10** hours spent in total
 
